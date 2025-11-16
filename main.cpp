@@ -3,9 +3,11 @@
 #include <sstream>
 #include <string>
 #include "src/array.hpp"
+#include <filesystem>
 
 int main() {
     std::string filename;
+    std::cout << "Current directory: " << std::filesystem::current_path() << std::endl;
     std::cout << "Enter the filename: ";
     std::cin >> filename;
     
