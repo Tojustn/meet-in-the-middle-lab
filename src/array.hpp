@@ -54,20 +54,26 @@ public:
         return size == 0;
     }
 
-    double getMedian() const {
-    if (size == 0) {
-        throw std::runtime_error("Cannot calculate median of empty array");
+    double getMedian() {
+        if (size == 0) {
+            throw std::runtime_error("Cannot calculate median of empty array");
+        }
+        bubbleSort();
+        
+        for (int i = 0; i < size; i++) {    
+            std::cout << data[i] << " ";
+        }
+        std::cout << std::endl;
+        if (size % 2 == 1) {
+            return data[size / 2];
+        } else {
+            int mid1 = data[size / 2 - 1];
+            int mid2 = data[size / 2];
+            return (mid1 + mid2) / 2.0;
+        }
     }
-    
-    if (size % 2 == 1) {
-        return data[size / 2];
-    } else {
-        int mid1 = data[size / 2 - 1];
-        int mid2 = data[size / 2];
-        return (mid1 + mid2) / 2.0;
-    }
-}
     double getMean(){
+        bubbleSort();
         if (size == 0) {
             throw std::runtime_error("Cannot calculate mean of empty array");
         }
@@ -79,6 +85,7 @@ public:
     }
 
     double getMode() {
+        bubbleSort();
         if (size == 0) {
             throw std::runtime_error("Cannot calculate mode of empty array");
         }
@@ -98,4 +105,18 @@ public:
         }
         return maxValue;
     }
+
+    void bubbleSort() {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (data[j] > data[j + 1]) {
+                    int temp = data[j];
+                    data[j] = data[j + 1];
+                    data[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+
 };
