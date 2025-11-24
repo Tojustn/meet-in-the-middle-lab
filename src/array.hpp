@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <stdexcept>
 
 class DynamicArray {
@@ -66,4 +67,35 @@ public:
         return (mid1 + mid2) / 2.0;
     }
 }
+    double getMean(){
+        if (size == 0) {
+            throw std::runtime_error("Cannot calculate mean of empty array");
+        }
+        double sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += data[i];
+        }
+        return sum / size;
+    }
+
+    double getMode() {
+        if (size == 0) {
+            throw std::runtime_error("Cannot calculate mode of empty array");
+        }
+        // IDK if im allkwoed to use map but its for EC
+
+        std::map<int, int> countMap;
+        for (int i = 0; i < size; i++) {
+            countMap[data[i]]++;
+        }
+        int maxCount = 0;
+        int maxValue = 0;
+        for (const auto& pair : countMap) {
+            if (pair.second > maxCount) {
+                maxCount = pair.second;
+                maxValue = pair.first;
+            }
+        }
+        return maxValue;
+    }
 };

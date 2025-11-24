@@ -40,5 +40,11 @@ int main() {
     double median = stack.getMedian();
     std::cout << "The median of the dataset is " << median << std::endl;
     
+    double mean = stack.getMean();
+    std::cout << "The mean of the dataset is " << mean << std::endl;
+    
+    double mode = stack.getMode();
+    std::cout << "The mode of the dataset is " << mode << std::endl;
+    
     return 0;
 }
